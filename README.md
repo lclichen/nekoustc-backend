@@ -9,8 +9,8 @@ https://git.weixin.qq.com/wx_wxf2701f15e3f6197e/nekoustc
 
 界面中各类元素使用了WEUI，地址：https://developers.weixin.qq.com/miniprogram/dev/extended/weui/。
 
-对象存储上传功能使用了Ufile的代码进行修改删减。前端代码地址：https://github.com/ufilesdk-dev/ufile-jssdk，后端代码地址：https://github.com/ufilesdk-dev/ufile-sdk-auth-server。
+对象存储上传功能使用了Ufile的代码进行修改删减。前端代码地址：https://github.com/ufilesdk-dev/ufile-jssdk 后端代码地址：https://github.com/ufilesdk-dev/ufile-sdk-auth-server。
 
-后端用户认证直接使用了微信的示例代码，页面https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/signature.html，代码地址：https://res.wx.qq.com/wxdoc/dist/assets/media/aes-sample.eae1f364.zip。
+后端用户认证直接使用了微信的示例代码，页面https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/signature.html 代码地址：https://res.wx.qq.com/wxdoc/dist/assets/media/aes-sample.eae1f364.zip。
 
 首页图标使用了iconfont图标库：https://www.iconfont.cn/collections/detail?spm=a313x.7781069.0.da5a778a4&cid=7634。
