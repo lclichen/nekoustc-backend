@@ -1,0 +1,507 @@
+/*Part I: html basic elements*/
+html {
+	height: 100%;
+	font-family: Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;}
+body {
+	background: url("images/bg.gif") repeat;
+	height: inherit;
+	display: table;
+	width: 100%;
+	min-width: 300px;
+	overflow: scroll;
+}
+a {
+	color: #444444;
+	text-decoration: none;
+}
+a:hover {
+	color:rgb(0,80,160);
+}
+.inline-block {
+	display: inline-block;
+}
+/*Part II: container definition*/
+.no-margin{
+	margin:0;
+}
+.center{
+	margin: 0 auto!important;
+	text-align:center;
+}
+.body-cell{
+	display: table-cell;
+	vertical-align: middle;
+	height: inherit;
+}
+
+.body-cell2{
+	vertical-align: middle;
+	margin-top: 1%;
+}
+
+.qrcode {
+	width:71px;
+	height:71px;
+	position:absolute;
+    right: 0px;
+	background-image: url("../images/qrcode.png");
+	background-repeat: no-repeat;
+	display: none;
+}
+.input_login {
+	width:71px;
+	height:71px;
+	position:absolute;
+	display:none;
+    right: 0px;
+	background-image: url("../images/input_login.png");
+	background-repeat: no-repeat;
+}
+#divQrCode {
+	display:none;
+	vertical-align: middle;
+}
+
+/*consecutive auto-resize for different resolutions*/
+/*common part*/
+.box {
+	display: table;
+	position: relative;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	overflow: hidden;
+	color: #000;
+	background-color: #fff;
+	border-radius: 2px;
+	-webkit-box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+.card {
+	display: table-cell;
+	vertical-align: middle;
+	padding: 12% 8% 8% 8%;
+	width: inherit;
+}
+/*for some browsers not support @media*/
+.box{
+	width: 400px;
+}
+/*different part*/
+@media (max-width: 420px) {
+	.box{
+		width: 100%;
+		/*100% height when device width is less than 420px*/
+		height: inherit;
+	}
+}
+@media (min-width: 421px) and (max-width: 540px) {
+	.box{
+		width: 420px;
+	}
+}
+@media (min-width: 541px) and (max-width: 1260px) {
+	.box{
+		width: 80%;
+	}
+}
+@media (min-width: 1261px)/* and (max-width: 1440px)*/ {
+	.box{
+		width: 1080px;
+	}
+}
+/*@media (min-width: 1441px) {
+	.box{
+		width: 480px;
+		height:489px;
+	}
+}*/
+/*end for box*/
+/*Part III: header*/
+.header-logo{
+	width: 80%;
+	margin:auto;
+}
+.header-des{
+	margin:auto;
+	margin-top: 20px;
+	font: 2rem 楷体;
+}
+#des-img {
+	width: 40%;
+}
+/*Part IV: content*/
+/*there are 3 styles for different pages in this part.*/
+/*1. for error and failed page, only tip area is displayed */
+/* tip for page error/failed etc*/
+.tip-box {
+	height:210px;
+	margin-top:20px;
+	margin-bottom: 20px
+}
+#mobile-tip{
+	text-align: left;
+	margin: 20px;
+	padding-top: 20px;
+}
+.tip-box-tip-area{
+	padding:8%;
+	text-align: left;
+}
+.red{
+	color: red;
+}
+/*2. for findPassword,login and setPassword page, 0-1 tip area, 2-3 input areas and 1 button area are included */
+/* material form*/
+.form-style {
+	margin:20px auto;
+	width:90%;
+}
+.group {
+	position:relative;
+	padding-top: 14px;
+	padding-bottom: 4px;
+	height:34px;
+}
+
+.tip-for-form, .mail-tip{
+	text-align: left;
+	font-size: 14px;
+	line-height:20px;
+	letter-spacing:1px;
+	height:50px;
+}
+
+.validate{
+	height:52px;
+}
+/*validate*/
+.validate-input-area{
+	width:64%;
+	float: left;
+}
+.validate-img-area{
+	width:33.33%;
+	float: right;
+}
+.validate-img{
+	width:100%;
+	height:32px;
+	margin-top: -8px;
+	overflow: visible
+}
+/* form starting styles ------------------------------- */
+input {
+	/*height:31px;*/
+	padding: 0;
+	font-size:14px;
+	display:block;
+	width:100%;
+	border:none;
+	border-bottom:1px solid #0350a0;
+}
+input:focus {
+	outline:none;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+	font-size:14px;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	font-size:14px;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	font-size:14px;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+	font-size:14px;
+}
+.input-box{
+	height:24px;
+}
+/* LABEL ======================================= */
+label  {
+	font-size:12px;
+	font-weight:normal;
+	position:absolute;
+	pointer-events:none;
+	left:0;
+	top:-4px;
+	transition:0.2s ease all;
+	-moz-transition:0.2s ease all;
+	-webkit-transition:0.2s ease all;
+}
+.hide {
+	color:transparent;
+}
+
+/* BOTTOM BARS ================================= */
+.bar {
+	position:relative;
+	display:block;
+	width:100%;
+}
+.bar:before {
+	content:'';
+	height: 2px;
+	width: 0;
+	position: absolute;
+	left: 50%;
+	bottom: -1px;
+	background: #0350a0;
+	transition: 0.2s ease all;
+	-moz-transition: 0.2s ease all;
+	-webkit-transition: 0.2s ease all;
+	-o-transition: 0.2s ease all;
+}
+.bar:after {
+	content:'';
+	height: 2px;
+	width: 0;
+	position: absolute;
+	right: 50%;
+	bottom: -1px;
+	background: #0350a0;
+	transition: 0.2s ease all;
+	-moz-transition: 0.2s ease all;
+	-webkit-transition: 0.2s ease all;
+	-o-transition: 0.2s ease all;
+}
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+	width:50%;
+}
+
+.btn{
+	position: relative;
+	display: inline-block;
+	width:40%;
+	min-width: 88px;
+	height: 36px;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0 16px;
+	margin: 0;
+	overflow: hidden;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 36px;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	zoom: 1;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border: none;
+	outline: 0;
+	-webkit-transition: all .2s cubic-bezier(.4,0,.2,1),-webkit-box-shadow .2s cubic-bezier(.4,0,1,1);
+	transition: all .2s cubic-bezier(.4,0,.2,1),-webkit-box-shadow .2s cubic-bezier(.4,0,1,1);
+	transition: all .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,1,1);
+	transition: all .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,1,1),-webkit-box-shadow .2s cubic-bezier(.4,0,1,1);
+	will-change: box-shadow;
+	-webkit-user-drag: none;
+	background-color: rgb(3,80,160);
+	color:white;
+}
+.btn:hover{
+	background-color: rgba(3,80,160,.8);
+}
+.btn:active{
+	background-color:rgb(40,80,160);
+}
+
+.ripple {
+	position: relative;
+	overflow: hidden;
+}
+
+.ripple:after {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+	background-image: radial-gradient(circle, #666 10%, transparent 10.01%);
+	background-repeat: no-repeat;
+	background-position: 50%;
+	transform: scale(10, 10);
+	opacity: 0;
+	transition: transform 1s, opacity 1s;
+}
+
+.ripple:active:after {
+	transform: scale(0, 0);
+	opacity: .3;
+	transition: 0s;
+}
+.selector-left{
+	position:relative;
+	text-align: left;
+	font-size:14px;
+	line-height: 36px;
+}
+.selector-right{
+	position: relative;
+	text-align: right;
+	font-size:14px;
+	line-height: 36px;
+}
+.selector-center{
+	position: relative;
+	text-align: center;
+	font-size:14px;
+	line-height: 36px;
+}
+
+/*bottom box for selector/buttons*/
+.bottom-box{
+	height:54px;
+	width: 100%;
+	position: relative;
+}
+.bottom-box-selector {
+	position: absolute;
+	left: 0;
+	bottom: 8px;
+	line-height: 36px;
+}
+.bottom-box-button-area{
+	position:absolute;
+	right: 42%;
+	bottom: 0;
+	font-size:12px;
+	line-height: 36px;
+}
+.bottom-box-button-area-1{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+.bottom-box-button-area-2{
+	position: absolute;
+	left: 0;
+	bottom: 0
+}
+
+/*3. for success page, 1 tip area and 1 button area are displayed */
+.success{
+	height:54px;
+	position: relative;
+	width: 84%;
+	margin-left: 8%;
+
+}
+
+/*Part V: footer*/
+.footer{
+	padding: auto 5%;
+	text-align: center;
+	font-size: 12px;
+	line-height: 24px;
+	color: #444444;
+	height:50px;
+}
+
+/* header */
+
+.langSelect{
+	text-align-last: center;
+	height: 20px;
+	line-height: 20px;
+	padding: 0px 0;
+	font-size: 10px
+}
+/* 弹窗 (background) */
+.modal {
+    display: none; /* 默认隐藏 */
+    position: fixed; /* 固定定位 */
+    z-index: 1; /* 设置在顶层 */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+/* 弹窗内容 */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+}
+
+/* 关闭按钮 */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.hide{
+	display:none!important
+}
+.show{
+	display:block!important
+}
+.headimg {
+	width: 100px;
+}
+.float-r {
+	float: right;
+}
+.btn-default{
+	color:#333;
+	background-color:#fff;
+	border-color:#ccc
+}
+.btn-default.focus,.btn-default:focus{
+	color:#333;
+	background-color:#e6e6e6;
+	border-color:#8c8c8c
+}
+.btn-default:hover{
+	color:#333;
+	background-color:#e6e6e6;
+	border-color:#adadad
+}
+.btn-default.active,.btn-default:active,.open>.dropdown-toggle.btn-default{
+	color:#333;
+	background-color:#e6e6e6;
+	border-color:#adadad
+}
+.btn-default.active.focus,.btn-default.active:focus,.btn-default.active:hover,.btn-default:active.focus,.btn-default:active:focus,.btn-default:active:hover,.open>.dropdown-toggle.btn-default.focus,.open>.dropdown-toggle.btn-default:focus,.open>.dropdown-toggle.btn-default:hover{
+	color:#333;
+	background-color:#d4d4d4;
+	border-color:#8c8c8c
+}
+.btn-default.active,.btn-default:active,.open>.dropdown-toggle.btn-default{
+	background-image:none
+}
+.btn-default.disabled.focus,.btn-default.disabled:focus,.btn-default.disabled:hover,.btn-default[disabled].focus,.btn-default[disabled]:focus,.btn-default[disabled]:hover,fieldset[disabled] .btn-default.focus,fieldset[disabled] .btn-default:focus,fieldset[disabled] .btn-default:hover{
+	background-color:#fff;
+	border-color:#ccc
+}
+.btn-default .badge{
+	color:#fff;
+	background-color:#333
+}
