@@ -1,8 +1,10 @@
 # Config files
+.config.php
+.Auth_Config.php
+userdata/.UserInfoConfig.php
 config.php
 Auth_Config.php
 userdata/UserInfoConfig.php
-
 # Log
 *.log
 
