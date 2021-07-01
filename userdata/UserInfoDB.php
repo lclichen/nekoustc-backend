@@ -18,7 +18,7 @@ class UserInfoDB
     {
         //连接数据库
         include_once "UserInfoConfig.php";
-
+        
         $con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname); //连接mysql服务并选择数据库
         if ($con->connect_error) {
             die("连接错误: " . $con->connect_error); //连接失败 打印错误日志
@@ -33,12 +33,18 @@ class UserInfoDB
             $con->query($SCondition);
             $SCondition = "UPDATE userinfo SET login_timestamp = ".$data['watermark']['timestamp']." WHERE openid = '".$openid."';";
             $con->query($SCondition);
+            $SCondition = "UPDATE userinfo SET avatarUrl = ".$data['avatarUrl']." WHERE openid = '".$openid."';";
+            $con->query($SCondition);
+            $SCondition = "UPDATE userinfo SET nickName = ".$data['nickName']." WHERE openid = '".$openid."';";
+            $con->query($SCondition);
+            $SCondition = "UPDATE userinfo SET gender = ".$data['gender']." WHERE openid = '".$openid."';";
+            $con->query($SCondition);
             $SCondition = "UPDATE userinfo SET login_token = '".$token."' WHERE openid = '".$openid."';";
             $con->query($SCondition);
     
         }
         else{//数据库中没有该用户
-            $words = '"'.$data['avatarUrl'].'","'.$data['nickName'].'",'.$data['gender'].',"'.$data['province'].'","'.$data['city'].'","'.$data['country'].'","'.$data['openId'].'","'.$sessionKey.'",'.$data['watermark']['timestamp'].',"'.$token.'","u"';
+            $words = '"'.$data['avatarUrl'].'","'.$data['nickName'].'",'.$data['gender'].',"'.$data['province'].'","'.$data['city'].'","'.$data['country'].'","'.$openid.'","'.$sessionKey.'",'.$data['watermark']['timestamp'].',"'.$token.'","u"';
             $SCondition = "INSERT INTO userinfo (avatarUrl,nickName,gender,province,city,country,openid,login_sessionkey,login_timestamp,login_token,admin) VAlUES (".$words.");";
             $result = $con->query($SCondition);
         }

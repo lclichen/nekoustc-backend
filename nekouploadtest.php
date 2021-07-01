@@ -72,7 +72,7 @@ else{//匹配不到id,新增模式,tag应为new
     else{
         $report =  "新增 $id $name 失败！请联系<a href='mailto:NYANUSTC@hotmail.com'>NYANUSTC@hotmail.com</a>";
     }
-    $sql_insert->close();
+    //echo "test $id | $ctrl | $openid \n";
 }
 if($openid != '' && $ctrl == 'u'){
     $ctrl = pdo_check_owner($con,$openid,$name);

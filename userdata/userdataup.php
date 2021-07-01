@@ -29,7 +29,8 @@ $pc = new WXBizDataCrypt($appId, $sessionKey);
 $errCode = $pc->decryptData($encryptedData, $iv, $data);
 if ($errCode == 0) {
     $data = json_decode($data,true);
-    if (($data['openId'] == $openid) && ($data['watermark']['appid']==$appId)) {
+    //if (($data['openId'] == $openid) && ($data['watermark']['appid']==$appId)) {
+    if ($data['watermark']['appid']==$appId) {
         $db = new UserInfoDB($data,$sessionKey,$openid);
         $token = $db->addUserInfo($data,$sessionKey,$openid);
         echo $token;
