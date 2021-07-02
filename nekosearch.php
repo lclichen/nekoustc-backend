@@ -15,7 +15,7 @@ $tag = $_GET['tag'];
 include_once "common.php";
 $con = pdo_database();
 $arr = array();
-$SCondition = "SELECT id,name,sch_area FROM `catsinfo` WHERE ";
+$SCondition = "SELECT id,name,sex,color,TNR,adopt,sch_area FROM `catsinfo` WHERE ";
 if(strlen($sch_area)>0 && $sch_area != 'all'){ #根据校区进行筛选
     $SCondition .= "sch_area = :sch_area AND ";
     $arr[':sch_area'] = $sch_area;
@@ -40,13 +40,13 @@ if(strlen($health)>0){ #根据健康情况进行筛选
     $SCondition .= "health = :health AND ";
     $arr[':health'] = $health;
 }
-if(strlen($color)>0){ #根据健康情况进行筛选
+if(strlen($color)>0 && $color != 'all'){ #根据健康情况进行筛选
     $SCondition .= "color = :color AND ";
     $arr[':color'] = $color;
 }
 if(strlen($keyword)>0){ #根据关键词进行筛选
     $SCondition .= "(name LIKE :keyword OR description LIKE :keyword ) AND ";
-    $arr[':keyword'] = "%$keyword%";
+    $arr[':keyword'] = '%'."$keyword".'%';
 }
 $SCondition .= "hide = 0;";
 
@@ -67,7 +67,18 @@ if($row && $tag == 'wx'){
         }
     echo ']';
 }
-if($row && $tag != 'wx'){
+if($row && $tag == 'wxdetail'){
+    echo '[';
+        while($row){
+            echo '{"text":"' . $row['name'] . '","value":' . $row['id'] . ',"sex":"' . $row['sex'] . '","color":"' . $row['color'] . '","adopt":"' . $row['adopt'] . '","area":"' . $row['sch_area'] . '","tnr":"' . $row['TNR'] . '"}';
+            $row = $sth->fetch(PDO::FETCH_ASSOC);
+            if($row){
+                echo ",";
+            }
+        }
+    echo ']';
+}
+if($row && $tag != 'wx' && $tag != 'wxtest'){
     echo '{';
         while($row){
             echo '"' . $row['id'] . '":{"id":"' . $row['id'] . '","name":"' . $row['name'] . '","sch_area":"' . $row['sch_area'] . '"}';

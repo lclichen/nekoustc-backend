@@ -2,11 +2,15 @@
 header("content-type:text/html;charset=utf-8");
 
 $id = 0;
-$id = (int)$_GET['id'];
+//$id = (int)$_GET['id'];
 
 //连接数据库
 include_once "common.php";
-$con = con_database();
+$data = initPostData();
+$id = (int)$data['id'];
+$token = $data['token'];
+
+$con = pdo_database();
 
 if(strlen($id)>0 && $id != 0){ #根据id筛选
     $SCondition = "SELECT link,likeit,uploaddate FROM `images` WHERE id = $id AND hide = 0;";
@@ -17,8 +21,12 @@ if(strlen($id)>0 && $id != 0){ #根据id筛选
 //2-最近一张
 //3-高赞一张
 
-$result = $con->query($SCondition) or die(mysqli_error($con));
-$rows = $result->fetch_all(1);
+//$result = $con->query($SCondition) or die(mysqli_error($con));
+//$rows = $result->fetch_all(1);
+$sth = $con->prepare($SCondition, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+$sth->execute($arr);
+
+$rows = $sth->fetchAll(PDO::FETCH_ASSOC);
 $len=count($rows);
 $ran=rand(0,2);
 if($len>3){
