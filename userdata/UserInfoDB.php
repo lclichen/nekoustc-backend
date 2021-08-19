@@ -7,14 +7,15 @@ class UserInfoDB
     private $data;
 
     //保存登录用户信息
-    public function __construct($data,$sessionKey,$openid)
+    public function __construct($data,$sessionKey,$openid,$isProfile)
 	{
 		$this->openid = $openid;
 		$this->sessionKey = $sessionKey;
 		$this->data = $data;
+        $this->isProfile = $isProfile;
 	}
 
-    public function addUserInfo($data,$sessionKey,$openid)
+    public function addUserInfo($data,$sessionKey,$openid,$isProfile)
     {
         //连接数据库
         include_once "UserInfoConfig.php";
@@ -33,15 +34,16 @@ class UserInfoDB
             $con->query($SCondition);
             $SCondition = "UPDATE userinfo SET login_timestamp = ".$data['watermark']['timestamp']." WHERE openid = '".$openid."';";
             $con->query($SCondition);
-            $SCondition = "UPDATE userinfo SET avatarUrl = ".$data['avatarUrl']." WHERE openid = '".$openid."';";
-            $con->query($SCondition);
-            $SCondition = "UPDATE userinfo SET nickName = ".$data['nickName']." WHERE openid = '".$openid."';";
-            $con->query($SCondition);
-            $SCondition = "UPDATE userinfo SET gender = ".$data['gender']." WHERE openid = '".$openid."';";
-            $con->query($SCondition);
             $SCondition = "UPDATE userinfo SET login_token = '".$token."' WHERE openid = '".$openid."';";
             $con->query($SCondition);
-    
+            if($isProfile || $data['nickName'] != '微信用户'){
+                $SCondition = "UPDATE userinfo SET avatarUrl = ".$data['avatarUrl']." WHERE openid = '".$openid."';";
+                $con->query($SCondition);
+                $SCondition = "UPDATE userinfo SET nickName = ".$data['nickName']." WHERE openid = '".$openid."';";
+                $con->query($SCondition);
+                $SCondition = "UPDATE userinfo SET gender = ".$data['gender']." WHERE openid = '".$openid."';";
+                $con->query($SCondition);
+            }
         }
         else{//数据库中没有该用户
             $words = '"'.$data['avatarUrl'].'","'.$data['nickName'].'",'.$data['gender'].',"'.$data['province'].'","'.$data['city'].'","'.$data['country'].'","'.$openid.'","'.$sessionKey.'",'.$data['watermark']['timestamp'].',"'.$token.'","u"';

@@ -2,9 +2,7 @@
 .config.php
 .Auth_Config.php
 userdata/.UserInfoConfig.php
-config.php
-Auth_Config.php
-userdata/UserInfoConfig.php
+wxacode/.UserInfoConfig.php
 # Log
 *.log
 

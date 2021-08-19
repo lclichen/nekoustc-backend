@@ -61,7 +61,7 @@ else{//匹配不到id,新增模式,tag应为new
         $con = null;
         die("改名请联系管理员");
     }
-    $hide = 0;
+    $hide = 1;
     $id = $con->query("SELECT MAX(id) FROM catsinfo;")->fetch(PDO::FETCH_ASSOC)['MAX(id)'] + 1;
     $sql = 'INSERT INTO catsinfo (id, name, color, hide, openid, sex, health, vac, TNR, sch_area ,adopt) VALUES ( :id, :name, "emp", :hide, :openid, "empty", "empty", "empty", "empty", "empty", "empty")';
     $sth = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));

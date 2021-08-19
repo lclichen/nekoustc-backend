@@ -16,6 +16,7 @@ if($openid && $ctrl == 'u'){
 if($ctrl == 'a' || $ctrl == 'o'){
     $sql = "SELECT id,name,birthday,color,health,TNR,cutdate,sch_area,uploader,adopt,adopter,sex,description,adoptdate,deathdate,vacdate,vac,uploader,a_tel,secret FROM `catsinfo` WHERE id = :id ;";
     $isA = 1;
+    //$isA = 's';
 }
 elseif($ctrl == 's'){
     $sql = "SELECT * FROM `catsinfo` WHERE id = :id ;";

@@ -7,7 +7,13 @@ include_once "UserInfoConfig.php";
 $code = $_POST['code'];
 $encryptedData = $_POST['encryptedData'];
 $iv = $_POST['iv'];
-
+$isProfile = $_POST['isProfile'];
+if($isProfile){
+    $isProfile = true;
+}
+else{
+    $isProfile = false;
+}
 
 $Url = "https://api.weixin.qq.com/sns/jscode2session?appid=" . $appId . "&secret=" . $appSecret . "&js_code=" . $code . "&grant_type=authorization_code";
 
@@ -31,8 +37,8 @@ if ($errCode == 0) {
     $data = json_decode($data,true);
     //if (($data['openId'] == $openid) && ($data['watermark']['appid']==$appId)) {
     if ($data['watermark']['appid']==$appId) {
-        $db = new UserInfoDB($data,$sessionKey,$openid);
-        $token = $db->addUserInfo($data,$sessionKey,$openid);
+        $db = new UserInfoDB($data,$sessionKey,$openid,$isProfile);
+        $token = $db->addUserInfo($data,$sessionKey,$openid,$isProfile);
         echo $token;
     }
 } else {
